@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+Заполнить заявку
+{% endblock %}
+
+{% block body %}
+<h1>Подача заявки</h1>
+
+<form method="post" class="form-control">
+    <input type="text" name="title" placeholder="введите тему заявки" class="form-control" required> <br>
+    <input type="text" name="text" placeholder="введите текст заявки" class="form-control" required> <br>
+    <button class="btn btn-success" type="submit">Добавить</button>
+</form>
+{% endblock %}
