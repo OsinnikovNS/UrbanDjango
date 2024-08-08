@@ -1,7 +1,7 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
-
 class Buyer(models.Model):
     name = models.CharField(max_length=100)
     balance = models.DecimalField(max_digits=6, decimal_places=2)
