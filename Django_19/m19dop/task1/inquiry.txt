@@ -1,0 +1,47 @@
+переход в консоль python:
+python manage.py shell
+
+для возможности делать запросы в БД импортируем модель,
+в нашем случае это модель Game и модель Buyere
+from task1.models import Game
+from task1.models import Buyer
+
+Game.objects.all() - запрос вывода всех объектов из БД, таблица Game
+Buyer.objects.all() - запрос вывода всех объектов из таблицы Buyer
+
+Buyer.objects.create(name='Bob', age=10, balance=12.5)
+Buyer.objects.create(name='Nik', age=33, balance=33.3)
+Buyer.objects.create(name='Piter', age=44, balance=44.5)
+
+Game.objects.create(title='Mario', cost=5, size=0.5, description='Old Game', age_limitied=True)
+Game.objects.create(title='Tanks', cost=22, size=5.5, description='Game', age_limitied=False)
+Game.objects.create(title='Bools', cost=33, size=6.6, description='NewGame', age_limitied=True)
+
+Buyer.objects.filter(age='10') - выводим покупателя с фильтром по возрасту '10'
+Buyer.objects.filter(age='10').update(age='15') - обновляем запись age в БД с 10 на 15
+
+Buyer.objects.count() - просмотр количества объектов в БД модуля Buyer
+
+a = Buyer.objects.get(id=3) присвоим переменно объект с id=3 (через запрос get)
+a.delete() - удалить объект (Buyer.objects.get(id=3)) из БД
+
+b = Buyer.objects.all() - присвоить переменной b все объекты БД
+b.delete() - удалить все объекты в базе (очистить БД)
+
+____________________________________________________________________________
+Решение ДЗ №2 Модуль 19:
+
+from task1.models import Buyer, Game
+buyer1 = Buyer.objects.create(name='Bob', balance=12.5, age=15)
+buyer2 = Buyer.objects.create(name='Nik', age=33, balance=33.3)
+buyer3 = Buyer.objects.create(name='Piter', age=44, balance=44.5)
+game1 = Game.objects.create(title='Mario', cost=5, size=0.5, description='Old Game', age_limitied=True)
+game2 = Game.objects.create(title='Tanks', cost=22, size=5.5, description='Game', age_limitied=False)
+game3 = Game.objects.create(title='Bools', cost=33, size=6.6, description='NewGame', age_limitied=True)
+
+Присвоение models.ManyToMany
+game2.buyers.set([buyer1, buyer2,buyer3]) - здесь игра 2 приобретается покупателями buyer1, buyer2 и buyer3.
+game1.buyers.set([buyer2, buyer3])
+game3.buyers.set([buyer3])
+
+
